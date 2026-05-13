@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════
+   USER MENU DROPDOWN
+═══════════════════════════════════════ */
+
+/* ── WRAPPER ── */
+.user-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── TRIGGER BUTTON ── */
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px 5px 5px;
+  border-radius: 100px;
+  transition: background 0.2s;
+  outline: none;
+}
+
+.user-btn:hover {
+  background: rgba(59, 109, 232, 0.12);
+}
+
+/* Avatar initiales */
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d4ed8, #3b6de8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(59, 109, 232, 0.35);
+  text-transform: uppercase;
+}
+
+/* Nom affiché */
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #c8d6e5;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.user-btn:hover .user-name,
+.user-btn.open .user-name {
+  color: #ffffff;
+}
+
+/* Chevron */
+.user-chevron {
+  color: #4a6080;
+  display: flex;
+  align-items: center;
+  transition: transform 0.25s ease;
+}
+
+.user-btn.open .user-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── DROPDOWN ── */
+.user-dropdown {
+  position: fixed;
+  top: 82px;
+  right: 24px;
+  width: 224px;
+  background: rgba(8, 13, 26, 0.97);
+  border: 1px solid rgba(59, 109, 232, 0.2);
+  border-radius: 14px;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transform-origin: top right;
+  z-index: 9999;
+}
+
+/* Animations */
+.user-dropdown.entering {
+  animation: ddIn 0.2s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+.user-dropdown.leaving {
+  animation: ddOut 0.15s ease forwards;
+}
+
+@keyframes ddIn {
+  from { opacity: 0; transform: scale(0.92) translateY(-6px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+@keyframes ddOut {
+  from { opacity: 1; transform: scale(1)    translateY(0); }
+  to   { opacity: 0; transform: scale(0.94) translateY(-4px); }
+}
+
+/* ── HEADER DU DROPDOWN ── */
+.dd-header {
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dd-avatar-lg {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1d4ed8, #3b6de8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 2.5px rgba(59, 109, 232, 0.4);
+}
+
+.dd-name {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.dd-email {
+  font-size: 11.5px;
+  color: #4a6080;
+  margin-top: 2px;
+}
+
+/* ── LISTE D'ITEMS ── */
+.dd-list {
+  padding: 8px 6px;
+}
+
+.dd-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #c8d6e5;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background 0.18s, color 0.18s;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.dd-item:hover {
+  background: rgba(59, 109, 232, 0.1);
+  color: #ffffff;
+}
+
+/* Icône de chaque item */
+.dd-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.18s;
+}
+
+/* Gérer le profil */
+.dd-item.dd-profile .dd-item-icon {
+  background: rgba(59, 109, 232, 0.1);
+  color: #60a5fa;
+}
+
+.dd-item.dd-profile:hover .dd-item-icon {
+  background: rgba(59, 109, 232, 0.2);
+}
+
+/* ── DIVIDER ── */
+.dd-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 4px 6px;
+}
+
+/* Se déconnecter */
+.dd-item.dd-logout {
+  color: #fca5a5;
+}
+
+.dd-item.dd-logout .dd-item-icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+.dd-item.dd-logout:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fecaca;
+}
+
+.dd-item.dd-logout:hover .dd-item-icon {
+  background: rgba(239, 68, 68, 0.18);
+}

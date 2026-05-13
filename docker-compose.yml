@@ -1,0 +1,38 @@
+services:
+  backend:
+    build: ./Backend
+    container_name: projetdd_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Backend:/app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:123@db:5432/base_bb
+
+  frontend:
+    build: ./Frontend/frontend
+    container_name: projetdd_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Frontend/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:16
+    container_name: projetdd_db
+    environment:
+      POSTGRES_DB: base_bb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
